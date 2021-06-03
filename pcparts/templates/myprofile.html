@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='main.js'></script>
+<style>
+    body {
+	    font-family: Arial, Helvetica, sans-serif;
+	    background: #b2afe4;
+	}
+	form {
+
+	  border-radius: 25px;
+	  background: #D1E8E2;
+	  position: relative;
+	  margin: 0 auto;
+	  padding: 20px 20px 20px;
+	  width: 500px;
+	}
+	table { width: 500px; } /* Make table wider */
+	td, th { border: 1px solid #CCC; } /* Add borders to cells */
+	button {
+        background-color: #35da4b;
+        color: rgb(0, 0, 0);
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+      }
+      
+      button:hover {
+          background-color: #4d3ddd;
+          color:black;
+      }
+</style>
+</head>
+<body>
+    <form method="POST" action="updateprofileform">
+        {% csrf_token %}
+        {%for user in info %}
+            <table border="1">
+
+                <tbody>
+                    <tr>
+                        <td>
+                            First name:
+                        </td>
+                        <td>
+                            {{user.first_name}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Last name:
+                        </td>
+                        <td>
+                            {{user.last_name}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Mobile No:
+                        </td>
+                        <td>
+                            {{user.username}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            email:
+                        </td>
+                        <td>
+                            {{user.email}}
+                        </td>
+                    </tr>
+                    {%for user1 in info1 %}
+                        <table border="1">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        Address line 1:
+                                    </td>
+                                    <td>
+                                        {{user1.addressline1}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Address line 2:
+                                    </td>
+                                    <td>
+                                        {{user1.addressline1}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        City:
+                                    </td>
+                                    <td>
+                                        {{user1.city}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        State:
+                                    </td>
+                                    <td>
+                                        {{user1.state}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                {% endfor %}
+
+                    <td colspan="2">
+                        <button type="submit" name="submit" value="{{product.id}}" id="submit">update profile</button>
+                    </td>
+                </tbody>
+                {% for message in messages %}
+                            <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ message }}</h4>
+                {% endfor %}
+                
+            </table>
+        {% endfor %}
+
+
+
+        
+
+
+        <h4 align="center"><a href="home"><font color="dodgerblue">Home</font></a>
+            <!-- {% if user.is_anonymous %}
+            <a href="login"><font color="#D9B08C">; Login</font></a></h4>
+            {% endif %} -->
+    </form>
+
+</body>
+</html>

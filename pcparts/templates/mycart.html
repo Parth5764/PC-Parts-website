@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <!-- <script src='main.js'></script> -->
+<style>
+    body {
+	    font-family: Arial, Helvetica, sans-serif;
+	    background: #b2afe4;
+	}
+	form {
+
+	  border-radius: 25px;
+	  background: #D1E8E2;
+	  position: relative;
+	  margin: 0 auto;
+	  padding: 20px 20px 20px;
+	  width: 500px;
+	}
+	table { width: 500px; } /* Make table wider */
+	td, th { border: 1px solid #CCC; } /* Add borders to cells */
+
+    .block {
+        display: block;
+        width: 100%;
+        border: none;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 28px;
+        font-size: 16px;
+        cursor: pointer;
+        text-align: center;
+      }
+      
+      .block:hover {
+        background-color: rgb(223, 167, 167);
+        color: black;
+      }
+</style>
+</head>
+<body>
+    <script>
+    var sum=0;
+    </script>
+    <form method="POST" action="removeformcart">
+        <h4><u>MY CART:<p id="demo"></p></u></h4>
+        <p id="demo"></p>
+        {% csrf_token %}
+        {% for product in products %}
+        <script>
+            sum = sum + {{ product.price }};
+        </script>
+        <table border="1">
+            <tbody>
+                <tr>
+                    <td><b>NAME:</b></td>
+                    <td><b>{{ product.name }}</b></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><img src="{{ product.img.url }} "width="300" height="200"></td>
+                </tr>
+                
+                <tr>
+                    <td>Price:</td>
+                    <td>{{ product.price }}</td>
+                </tr>
+
+                <tr>
+                    <!-- <input type="hidden" name="product category" value="{{product}}" id="product category">
+                    <td colspan="2"><button type="submit" name="remove from cart" value="{{ product.id}}" id="remove from cart">REMOVE FROM CART</button></td> -->
+                    <td colspan="2"><button type="submit" name="remove from cart" value="{{product}}" id="remove from cart">REMOVE FROM CART</button></td>
+                </tr>
+            </tbody>
+        </table>
+    
+        {% endfor%}
+
+        <input type="hidden" name="total price" value="{{ sum }}" id="total price">
+        <script>
+            document.getElementById("demo").innerHTML = "The Total Cost is: " + sum;
+            $('#sum').val($('#totalPrice').html())
+        </script>
+        
+        
+
+        <h4 align="center"><a href="http://127.0.0.1:8000"><font color="dodgerblue">Back To Home</font></a>
+
+
+    </form>
+
+    <form action="processorder" method="POST">
+        {% csrf_token %}
+        <button type="submit" href="processorder" name="processorder" class="block" id="processorder">Check Out</button>
+    </form>
+</body>
+</html>

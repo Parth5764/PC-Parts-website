@@ -1,0 +1,129 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #b2afe4;
+}
+
+* {
+  box-sizing: border-box;
+
+}
+form {
+
+  border-radius: 25px;
+  background: #D1E8E2;
+  position: relative;
+  margin: 0 auto;
+  padding: 20px 20px 20px;
+  width: 500px;
+}
+/* Add padding to containers */
+.container {
+  border-radius: 10px;
+  padding: 16px;
+}
+
+/* Full-width input fields */
+
+
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  box-sizing: border-box;
+}
+/* Overwrite default styles of hr */
+hr {
+  border: 1px solid #2C3531;
+  margin-bottom: 25px;
+}
+
+/* Set a style for the submit button */
+
+button {
+  background-color: #35da4b;
+  color: rgb(0, 0, 0);
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+    background-color: #4d3ddd;
+    color:black;
+}
+/* Add a blue text color to links */
+a {
+  color: dodgerblue;
+}
+
+/* Set a grey background color and center the text of the "sign in" section */
+.login {
+  background-color: #f1f1f1;
+  text-align: center;
+}
+.text-line {
+    background-color: transparent;
+    color: black;
+    outline: none;
+    outline-style: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: solid #D9B08C 2px;
+    padding: 3px 10px;
+}
+</style>
+</head>
+
+<body>
+
+<form action="register" method="POST">
+    {% csrf_token %}
+    <div class="container">
+	    <h2 align="center" ><font color="#116466"> Pc Parts</h2>
+	    <p align="center">Please Fill in this Form to create an account.</p>
+	    <hr>
+
+	    <label for="fname"><b>Firstname</b></label>
+	    <input type="text" class="text-line" placeholder="Enter Your First name" name="first_name" required>
+
+	    <label for="lname"><b>Last name</b></label>
+      <input type="text" class="text-line" placeholder="Enter Your Last name" name="last_name" required>
+
+	    <label for="password"><b>Password</b></label>
+	    <input type="password" class="text-line" placeholder="Enter your Password" name="password1" required>
+
+	    <label for="password2"><b>Password2</b></label>
+	    <input type="password" class="text-line" placeholder="Enter your Re-Password" name="password2" required>
+
+	    <label for="phone_no"><b>Mobile-No</b></label>
+	    <input type="text" class="text-line" placeholder="Enter Your Mobile-No" name="username" required>
+
+	    <label for="Email"><b>Email</b></label>
+    	<input type="text" class="text-line" placeholder="Enter Your Email" name="email" required>
+
+    	<button type="submit" class="registerbtn" name="submit" value="submit">Register</button>
+		    <p>Already have an account? <a href="login">Login</a></p>
+  	</div></font>
+  			<div>
+                        {% for message in messages %}
+                            <h4>{{ message }}</h4>
+                        {% endfor %}
+
+            </div>
+</form>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+</html>
+<!-- end document-->

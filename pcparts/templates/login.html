@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Pc Parts Login</title>
+	<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #b2afe4;
+}
+form {
+
+  border-radius: 25px;
+  background: #D1E8E2;
+  position: relative;
+  margin: 0 auto;
+  padding: 20px 20px 20px;
+  width: 500px;
+}
+
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #35da4b;
+  color: rgb(0, 0, 0);
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+    background-color: #4d3ddd;
+    color:black;
+}
+
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  color: white;
+  background-color: grey;
+}
+
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
+
+img.avatar {
+  width: 40%;
+  border-radius: 50%;
+}
+
+.container {
+  border-radius: 10px;
+  padding: 16px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+     display: block;
+     float: none;
+  }
+  .cancelbtn {
+     width: 100%;
+  }
+}
+a {
+  color: dodgerblue;
+}
+.text-line {
+    background-color: transparent;
+    color: black;
+    outline: none;
+    outline-style: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: solid #D9B08C 2px;
+    padding: 3px 10px;
+}
+</style>
+</head>
+<body>
+
+    <form action="login" method="POST">
+    {% csrf_token %}
+	<h2 align="center" ><font color="#116466"> Pc Parts</h2>
+	  <div class="imgcontainer">
+      <h1><i class="fa fa-sign-in"></i></h1>
+	  </div>
+
+	  <div class="container">
+	    <label for="username"><b>Mobile no:</b></label>
+	    <input type="text" class="text-line" placeholder="mobile no" name="username" required>
+
+	    <label for="password"><b>Password</b></label>
+    	<input type="password" class="text-line" placeholder="Enter Password" name="password" required>
+		<button type="submit" name="submit" value="submit">Login</button>
+	  </div>
+
+	  	<div class="container" style="background-color:#f1f1f1">
+	      <button type="reset" class="cancelbtn">Cancel</button>
+	      <span class="psw">Forgot <a href="forgot">password?</a></span></font>&nbsp;
+	      <a href="register">Register</a>
+  		</div>
+					<div>
+
+                        {% for message in messages %}
+                            <h4>{{ message }}</h4>
+                        {% endfor %}
+                    </div>
+		</form>
+</body>
+</html>

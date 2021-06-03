@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='main.js'></script>
+<style>
+    body {
+	    font-family: Arial, Helvetica, sans-serif;
+	    background: #116466;
+	}
+	form {
+
+	  border-radius: 25px;
+	  background: #D1E8E2;
+	  position: relative;
+	  margin: 0 auto;
+	  padding: 20px 20px 20px;
+	  width: 500px;
+	}
+	table { width: 500px; } /* Make table wider */
+	td, th { border: 1px solid #CCC; } /* Add borders to cells */
+	button {
+	  background-color: #D9B08C;
+	  color: grey;
+	  padding: 14px 20px;
+	  margin: 8px 0;
+	  border: none;
+	  cursor: pointer;
+	  width: 100%;
+	}
+
+	button:hover {
+	    background-color: #FFCB9A;
+	    color:black;
+}
+</style>
+</head>
+<body>
+    <form method="post" action="/image/addtocart/">
+        {% csrf_token %}
+        <table border="1">
+           <tbody>
+                <tr>
+                    <td colspan="2"><img src="{{info.hotel_Main_Img.url}}" width="300" height="200"></td>
+
+                </tr>
+                <tr>
+                    <td>Prize:</td>
+                    <td>{{info.prize}}</td>
+                </tr>
+                <tr>
+                    <td>Owner_name:</td>
+                    <td>{{info.name}}</td>
+                </tr>
+                <tr>
+                    <td>mobile no:</td>
+                    <td>{{info.mobile}}</td>
+                </tr>
+                <tr>
+                    <td>City:</td>
+                    <td>{{info.city}}</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><button type="submit" name="addtocart" value="{{info.id}}" id="addtocart">add to cart</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+
+</body>
+</html>

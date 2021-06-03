@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <script src='main.js'></script>
+<style>
+    body {
+	    font-family: Arial, Helvetica, sans-serif;
+	    background: #b2afe4;
+	}
+	form {
+
+	  border-radius: 25px;
+	  background: #D1E8E2;
+	  position: relative;
+	  margin: 0 auto;
+	  padding: 20px 20px 20px;
+	  width: 500px;
+	}
+	table { width: 500px; } /* Make table wider */
+	td, th { border: 1px solid #CCC; } /* Add borders to cells */
+	button {
+        background-color: #35da4b;
+        color: rgb(0, 0, 0);
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+      }
+      
+      button:hover {
+          background-color: #4d3ddd;
+          color:black;
+      }
+	  .text-line {
+		background-color: transparent;
+		color: black;
+		outline: none;
+		outline-style: none;
+		border-top: none;
+		border-left: none;
+		border-right: none;
+		border-bottom: solid #D9B08C 2px;
+		padding: 3px 10px;
+	}
+</style>
+</head>
+<body>
+    <form method="POST" action="http://127.0.0.1:8000/addtocart">
+        {% csrf_token %}
+        {% for product in info%}
+        <table>
+            
+            <tr>
+				<td colspan="2">
+					<img src="{{product.img.url}}" width="200" height="200" >
+				</td>
+
+
+			</tr>
+			<tr>
+				<td>
+					price
+				</td>
+				<td>
+				{{ product.price }}
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Description
+				</td>
+				<td>
+				{{ product.desc }}
+				</td>
+            </tr>
+			<tr>
+				<td colspan="2">
+					<button type="submit" name="pid" value="{{product}}" id="pid">Add To Cart</button>
+				</td>
+			</tr>
+
+			
+
+	{%endfor%}
+	
+    </form>
+
+	
+	<table>
+		<br/>REVIEWS<br/>
+	{% for reviews in rev%}
+
+		<tr>
+			<td>
+			{{ reviews.cname }} :
+			</td>
+		</tr>
+		<tr>
+			<td>
+			->{{ reviews.review }}
+			</td>
+		</tr>
+		{%endfor%}
+	</table>
+
+
+
+
+
+	<form method="POST" action="http://127.0.0.1:8000/reviews">
+		{% csrf_token %}
+		<tr>
+			<td colspan="2">
+				Review : <input type="text" class="text-line" placeholder="Add your review here" name="review" id="review">
+				<button type="submit" name="rev" value="review" id="rev">Submit your review</button>
+			</td>
+		</tr>
+
+	
+	</table>
+	</form>
+
+	
+	
+	
+	<h4 align="center"><a href="http://127.0.0.1:8000/register/homepage/"><font color="dodgerblue">Home</font></a>;
+		<a href="http://127.0.0.1:8000/register/login/"><font color="#D9B08C">Login</font></a></h4>
+	
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <!-- <script src='main.js'></script> -->
+<style>
+    body {
+	    font-family: Arial, Helvetica, sans-serif;
+	    background: #b2afe4;
+	}
+	form {
+
+	  border-radius: 25px;
+	  background: #D1E8E2;
+	  position: relative;
+	  margin: 0 auto;
+	  padding: 20px 20px 20px;
+	  width: 500px;
+	}
+	table { width: 500px; } /* Make table wider */
+	td, th { border: 1px solid #CCC; } /* Add borders to cells */
+	button {
+        background-color: #35da4b;
+        color: rgb(0, 0, 0);
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+      }
+      
+      button:hover {
+          background-color: #4d3ddd;
+          color:black;
+      }
+</style>
+</head>
+<body>
+    <form method="POST" action="http://127.0.0.1:8000/addtocart">
+        {% csrf_token %}
+        {%for product in info %}
+            
+            <table border="1">
+
+                <tbody>
+                    <tr>
+                        <td colspan="2" ><a href="http://127.0.0.1:8000/showproduct/{{product.id}}"><img src="{{product.img.url}}" width="200" height="200"></a></td>
+                        
+                    </tr>
+                    <tr>
+                        <td>Name:</td>
+                        <td>{{ product.name }}</td>
+                        <input type="hidden" name="name" value="{{product.name}}" id="name">
+                    </tr>
+                    <!-- <tr>
+                        <td >Category:</td>
+                        <td>{{ product.category }}</td>
+                    </tr> -->
+                    <tr>
+                        <td>Price:</td>
+                        <td>{{ product.price }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><button type="submit" name="pid" value="{{product}}" id="pid">Add To Cart</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        {% endfor %}
+        {% if user.is_authenticated %}
+        <h4 align="center"><a href="http://127.0.0.1:8000"><font color="dodgerblue">Back To Home</font></a>
+        {% else %}
+            <h4 align="center"><a href="http://127.0.0.1:8000"><font color="dodgerblue">Back To Home</font></a>  
+            <a href="http://127.0.0.1:8000/login"><font color="#D9B08C">Login</font></a></h4>
+        {% endif %}
+    </form>
+
+</body>
+</html>
